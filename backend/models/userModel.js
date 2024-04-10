@@ -5,8 +5,8 @@ const validator = require('validator');
 const Schema = mongoose.Schema;
 
 
-// Signup schema
-const signupSchema = new Schema({
+// User schema
+const userSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -31,20 +31,9 @@ const signupSchema = new Schema({
   }
 })
 
-// Schema for login
-const loginSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  }
-});
 
 // Static signup method
-signupSchema.statics.signup = async function(email, password, lastName, firstName, username) {
+userSchema.statics.signup = async function(email, password, lastName, firstName, username) {
 
   // Validation
   if(!email || !password || !lastName || !firstName || !username ) {
@@ -75,7 +64,21 @@ signupSchema.statics.signup = async function(email, password, lastName, firstNam
   return user;
 }
 
-module.exports = {
-  UserSignup: mongoose.model('UserSignup', signupSchema),
-  UserLogin: mongoose.model('UserLogin', loginSchema)
-};
+// Static login
+userSchema.statics.login = async function(email, password) {
+  const user = await this.findOne({ email });
+
+  if(!user) {
+    throw Error('Incorrect email');
+  }
+
+  const match = await bcrypt.compare(password, user.password);
+
+  if(!match) {
+    throw Error('Incorrect password');
+  };
+
+  return user;
+}
+
+module.exports = mongoose.model('User', userSchema);
