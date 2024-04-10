@@ -1,4 +1,5 @@
 const Post = require('../models/postModel');
+const mongoose = require('mongoose')
 
 // Get all posts
 const getPosts = async (req, res) => {
@@ -38,9 +39,26 @@ const createPost = async (req, res) => {
 }
 
 // Delete a post
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+
+  if(!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such post'});
+  };
+
+  const post = await Post.findOneAndDelete({_id: id});
+
+  if(!post) {
+    return res.status(400).json({error: 'No such post'});
+  };
+
+  res.status(200).json(post);
+
+}
 
 module.exports = {
   createPost,
   getPosts,
-  getPost
+  getPost,
+  deletePost
 }

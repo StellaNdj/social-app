@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import Post from "../components/Post.tsx";
+import PostForm from "../components/PostForm.tsx";
+import { usePostContext } from "../hooks/usePostContext.tsx";
+
 
 const Homepage = () => {
-  const [posts, setPosts] = useState<any>(null);
+  const { posts, dispatch } = usePostContext();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -9,7 +13,7 @@ const Homepage = () => {
       const json = await response.json()
 
       if (response.ok) {
-        setPosts(json);
+        dispatch({type: 'SET_POSTS', payload: json})
       }
     }
     fetchPosts()
@@ -21,9 +25,10 @@ const Homepage = () => {
     <div>
       <div>
         {posts !== null && posts.map((post) => {
-          return <p key={post._id}>{post.content}</p>
+          return <Post key={post.id} post={post}></Post>
         })}
       </div>
+      <PostForm></PostForm>
     </div>
 )
 };

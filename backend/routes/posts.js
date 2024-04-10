@@ -1,5 +1,5 @@
 const express = require('express');
-const { createPost, getPost, getPosts } = require('../controllers/postController');
+const { createPost, getPost, getPosts, deletePost } = require('../controllers/postController');
 
 const router = express.Router();
 
@@ -7,15 +7,13 @@ const router = express.Router();
 router.get('/', getPosts);
 
 // GET a single post
-router.get('/:id', getPost); 
+router.get('/:id', getPost);
 
 // POST a new post
 router.post('/', createPost);
 
 // DELETE a post
-router.delete('/:id', (req, res) => {
-  res.json('DELETE a post');
-});
+router.delete('/:id', deletePost);
 
 // UPDATE
 router.patch('/:id', (req, res) => {
