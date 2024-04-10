@@ -2,22 +2,46 @@ import React, { useEffect } from "react";
 import Post from "../components/Post.tsx";
 import PostForm from "../components/PostForm.tsx";
 import { usePostContext } from "../hooks/usePostContext.tsx";
+import { useAuthContext } from "../hooks/useAuthContext.tsx"
 
+interface PostContextType {
+  dispatch: (action: any) => void;
+  posts: [{
+    id: string;
+    content: string;
+  }]
+};
+
+interface AuthContextType {
+  user: {
+    id: string;
+    token: string;
+  } | null;
+};
 
 const Homepage = () => {
-  const { posts, dispatch } = usePostContext();
+  const { posts, dispatch } = usePostContext() as PostContextType;
+  const { user } = useAuthContext() as AuthContextType;
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/posts');
+      const response = await fetch('/api/posts', {
+        headers: {
+          'Authorization': `Bearer ${user?.token}`
+        }
+      });
       const json = await response.json()
 
       if (response.ok) {
         dispatch({type: 'SET_POSTS', payload: json})
       }
+
+      if(user) {
+        fetchPosts()
+      }
     }
     fetchPosts()
-  }, [])
+  }, [dispatch, user])
 
   return(
     <div>

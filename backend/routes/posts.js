@@ -1,7 +1,11 @@
 const express = require('express');
 const { createPost, getPost, getPosts, deletePost } = require('../controllers/postController');
+const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
+
+// Fire middleware function
+router.use(requireAuth);
 
 // GET all posts
 router.get('/', getPosts);

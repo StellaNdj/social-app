@@ -3,12 +3,27 @@ import './Post.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 import { usePostContext } from "../hooks/usePostContext.tsx";
+import {useAuthContext} from '../hooks/useAuthContext.tsx';
 
+interface PostContextType {
+  dispatch: (action: any) => void;
+};
+
+interface AuthContextType {
+  user: {
+    id: string;
+    token: string;
+  } | null;
+};
 
 const Post = ({ post }) => {
-  const { dispatch } = usePostContext();
+  const { dispatch } = usePostContext() as PostContextType;
+  const { user } = useAuthContext() as AuthContextType;
 
   const handleClick = async () => {
+    if (!user) {
+      return
+    }
     const response = await fetch('/api/posts/'+ post._id, {
       method: "DELETE"
     });

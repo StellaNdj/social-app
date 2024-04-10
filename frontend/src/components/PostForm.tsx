@@ -1,14 +1,32 @@
 import React from "react";
 import { useState } from "react";
 import { usePostContext } from "../hooks/usePostContext.tsx";
+import {useAuthContext} from '../hooks/useAuthContext.tsx';
+
+interface PostContextType {
+  dispatch: (action: any) => void;
+};
+
+interface AuthContextType {
+  user: {
+    id: string;
+    token: string;
+  } | null;
+};
 
 const PostForm = () => {
-  const { dispatch } = usePostContext();
+  const { dispatch } = usePostContext() as PostContextType;
+  const { user } = useAuthContext() as AuthContextType;
   const [content, setContent] = useState('');
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(!user) {
+      setError('You must be logged in');
+      return
+    }
 
     const post = { content };
 
@@ -16,7 +34,8 @@ const PostForm = () => {
       method: 'POST',
       body: JSON.stringify(post),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     });
 
