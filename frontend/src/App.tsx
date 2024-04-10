@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage.tsx";
 import Navbar from "./components/Navbar.tsx";
+import Signup from "./pages/Signup.tsx";
+import Login from "./pages/Login.tsx";
 
 function App() {
   return (
@@ -12,6 +14,12 @@ function App() {
           <Route
             path="/"
             element={<Homepage />}></Route>
+          <Route
+            path="/signup"
+            element={<Signup />}></Route>
+          <Route
+            path='/login'
+            element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

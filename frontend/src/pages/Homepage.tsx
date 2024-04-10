@@ -19,8 +19,6 @@ const Homepage = () => {
     fetchPosts()
   }, [])
 
-  console.log(posts);
-
   return(
     <div>
       <div>
