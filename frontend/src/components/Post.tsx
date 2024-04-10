@@ -43,8 +43,8 @@ const Post = ({ post }) => {
       <div className="post-counters">
         <p><FontAwesomeIcon icon={faThumbsUp} /></p>
         <p><FontAwesomeIcon icon={faThumbsDown} /></p>
-        <p>Like counter: {post.likes}</p>
-        <p>Dislike counter: {post.dislikes}</p>
+        <p>Likes: {post.likes}</p>
+        <p>Dislikes: {post.dislikes}</p>
         <span onClick={handleClick}>delete</span>
       </div>
     </div>

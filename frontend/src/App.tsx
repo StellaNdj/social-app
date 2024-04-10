@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar.tsx";
 import Signup from "./pages/Signup.tsx";
 import Login from "./pages/Login.tsx";
 import { useAuthContext } from "./hooks/useAuthContext.tsx";
+import './index.css';
 
 interface AuthContextType {
   user: {
@@ -19,11 +20,20 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route
             path="/"
-            element={user ? <Homepage /> : <Navigate to="/login"></Navigate>}></Route>
+            element={
+              user ? (
+                <>
+                  <Navbar />
+                  <Homepage />
+                </>
+              ) : (
+                <Navigate to="/login" />
+              )
+            }>
+          </Route>
           <Route
             path="/signup"
             element={!user ? <Signup />: <Navigate to="/"></Navigate>}></Route>

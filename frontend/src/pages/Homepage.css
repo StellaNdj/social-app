@@ -1,0 +1,12 @@
+.homepage {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.homepage-profile {
+  flex: 1;
+}
+
+.homepage-posts {
+  flex: 3;
+}
