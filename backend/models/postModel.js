@@ -6,7 +6,23 @@ const postSchema = new Schema({
   content: {
     type: String,
     required: true
-  }
+  },
+  likes: {
+    type: Number,
+    default: 0
+  },
+  dislikes: {
+    type: Number,
+    default: 0
+  },
+  user: {
+    type: Object,
+    require: true
+  },
+  // user_id: {
+  //   type: String,
+  //   required: true
+  // }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Post', postSchema);

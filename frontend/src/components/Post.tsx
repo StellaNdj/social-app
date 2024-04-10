@@ -13,6 +13,7 @@ interface AuthContextType {
   user: {
     id: string;
     token: string;
+    user: object;
   } | null;
 };
 
@@ -36,12 +37,14 @@ const Post = ({ post }) => {
 
   return(
     <div className="post-card">
-      <p>{post.content}</p>
+      <p>{post.content} {post.createdAt}</p>
+      <p>{post.user && post.user.firstName && post.user.lastName}</p>
+      <p>@{post.user && post.user.username}</p>
       <div className="post-counters">
         <p><FontAwesomeIcon icon={faThumbsUp} /></p>
         <p><FontAwesomeIcon icon={faThumbsDown} /></p>
-        <p>Like counter</p>
-        <p>Dislike counter</p>
+        <p>Like counter: {post.likes}</p>
+        <p>Dislike counter: {post.dislikes}</p>
         <span onClick={handleClick}>delete</span>
       </div>
     </div>

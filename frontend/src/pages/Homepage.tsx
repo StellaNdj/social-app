@@ -7,8 +7,9 @@ import { useAuthContext } from "../hooks/useAuthContext.tsx"
 interface PostContextType {
   dispatch: (action: any) => void;
   posts: [{
-    id: string;
+    _id: string;
     content: string;
+    user: object;
   }]
 };
 
@@ -30,29 +31,29 @@ const Homepage = () => {
           'Authorization': `Bearer ${user?.token}`
         }
       });
-      const json = await response.json()
+      const json = await response.json();
 
       if (response.ok) {
         dispatch({type: 'SET_POSTS', payload: json})
       }
+    };
 
-      if(user) {
-        fetchPosts()
-      }
+    if(user) {
+      fetchPosts();
+      console.log(posts);
     }
-    fetchPosts()
-  }, [dispatch, user])
+  }, [dispatch, user]);
 
   return(
     <div>
       <div>
         {posts !== null && posts.map((post) => {
-          return <Post key={post.id} post={post}></Post>
+          return <Post key={post._id} post={post}></Post>
         })}
       </div>
       <PostForm></PostForm>
     </div>
-)
+  )
 };
 
 export default Homepage;
