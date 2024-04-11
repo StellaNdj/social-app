@@ -1,5 +1,5 @@
 import React from "react";
-import './Avatar.css';
+import './components css/Avatar.css';
 
 const Avatar = ({firstName, lastName, username}) => {
   return (

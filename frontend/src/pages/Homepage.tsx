@@ -4,7 +4,7 @@ import { usePostContext } from "../hooks/usePostContext.tsx";
 import { useAuthContext } from "../hooks/useAuthContext.tsx";
 import { useState } from "react";
 import Profile from "../components/Profile.tsx";
-import './Homepage.css';
+import './pages css/Homepage.css';
 
 interface PostContextType {
   dispatch: (action: any) => void;
@@ -56,7 +56,6 @@ const Homepage = () => {
         }
 
         const json = await response.json();
-        console.log(json);
         setUserInfo(json);
       } catch (error) {
         console.error('Error fetching user info:', error);

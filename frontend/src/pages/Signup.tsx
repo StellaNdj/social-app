@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup.tsx';
-import './Forms.css';
+import './pages css/Forms.css';
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -52,7 +52,7 @@ const Signup = () => {
             <button disabled={isLoading}>Create a profile</button>
           </form>
           <p className="form-redirect">Already have an account ? <Link to="/login"> Sign in</Link></p>
-          {error && <div>{error}</div>}
+          {error && <div className="notice">{error}</div>}
 
         </div>
 

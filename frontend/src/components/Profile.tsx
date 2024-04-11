@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "./Avatar.tsx";
-import './Profile.css';
+import './components css/Profile.css';
 import Button from "./Button.tsx";
 import { useLogout } from "../hooks/useLogout.tsx";
 import { useState } from "react";

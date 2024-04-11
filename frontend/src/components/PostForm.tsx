@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { usePostContext } from "../hooks/usePostContext.tsx";
 import {useAuthContext} from '../hooks/useAuthContext.tsx';
-import './Modal.css';
+import './components css/Modal.css';
 import Button from "./Button.tsx";
 
 interface PostContextType {
@@ -51,7 +51,6 @@ const PostForm = ({onCloseModal}) => {
     if(response.ok) {
       setContent('');
       setError(null);
-      console.log('New post add', post);
       dispatch({type: 'CREATE_POST', payload: json});
       onCloseModal();
     }
@@ -64,7 +63,7 @@ const PostForm = ({onCloseModal}) => {
         onChange={(e) => setContent(e.target.value)}
         value={content}></textarea>
       <Button className={'modal-create-button'} onClick={undefined} text={'Post'}></Button>
-      {error && <div>{error}</div>}
+      {error && <div className="notice">{error}</div>}
     </form>
   )
 };

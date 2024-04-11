@@ -35,7 +35,6 @@ const createPost = async (req, res) => {
     const user = req.user;
     const post = await Post.create({content, user: user});
 
-    console.log(post);
     res.status(200).json(post);
   } catch (error) {
     res.status(400).json({error: error.message})

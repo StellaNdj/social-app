@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useLogin } from '../hooks/useLogin.tsx'
-import './Forms.css';
+import './pages css/Forms.css';
 
 const Login = () => {
   const [password, setPassword] = useState("");
@@ -35,7 +35,7 @@ const Login = () => {
             <button disabled={isLoading}>Login</button>
           </form>
           <p className="form-redirect">You don't have an account ? <Link to="/signup"> Sign up</Link></p>
-          {error && <div>{error}</div>}
+          {error && <div className="notice">{error}</div>}
         </div>
       </div>
     </div>

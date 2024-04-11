@@ -1,5 +1,5 @@
 import React from "react";
-import './Post.css';
+import './components css/Post.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 import { usePostContext } from "../hooks/usePostContext.tsx";
