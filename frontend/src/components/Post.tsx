@@ -89,8 +89,8 @@ const Post = ({ post }) => {
       <div className="post-counters">
         <FontAwesomeIcon icon={faThumbsUp} onClick={handleLikes} />
         <FontAwesomeIcon icon={faThumbsDown} onClick={handleDislikes} />
-        <p>Likes: {post.likes}</p>
-        <p>Dislikes: {post.dislikes}</p>
+        <p>Likes: <span>{post.likes}</span></p>
+        <p>Dislikes: <span>{post.dislikes}</span></p>
       </div>
     </div>
   )

@@ -1,3 +1,28 @@
 .avatar {
   display: flex;
 }
+
+.avatar-logo {
+  width: 50px;
+  height: 50px;
+  background-color: #F2EFFF;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #7B61FF;
+  font-weight: bold;
+}
+
+.avatar-infos > h3,
+.avatar-infos > p {
+  margin: 0;
+  margin-left: 15px;
+}
+
+.avatar-infos > p {
+  color:#7B61FF;
+  font-weight: bold;
+  font-size: smaller;
+}

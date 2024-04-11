@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { usePostContext } from "../hooks/usePostContext.tsx";
 import {useAuthContext} from '../hooks/useAuthContext.tsx';
+import './Modal.css';
+import Button from "./Button.tsx";
 
 interface PostContextType {
   dispatch: (action: any) => void;
@@ -14,7 +16,7 @@ interface AuthContextType {
   } | null;
 };
 
-const PostForm = () => {
+const PostForm = ({onCloseModal}) => {
   const { dispatch } = usePostContext() as PostContextType;
   const { user } = useAuthContext() as AuthContextType;
   const [content, setContent] = useState('');
@@ -50,19 +52,18 @@ const PostForm = () => {
       setContent('');
       setError(null);
       console.log('New post add', post);
-      dispatch({type: 'CREATE_POST', payload: json})
+      dispatch({type: 'CREATE_POST', payload: json});
+      onCloseModal={onCloseModal};
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>New post</h3>
-      <label>Content</label>
+    <form className="modal-form" onSubmit={handleSubmit}>
       <input
         type="text"
         onChange={(e) => setContent(e.target.value)}
         value={content}/>
-      <button>Create post</button>
+      <Button className={'modal-create-button'} onClick={undefined} text={'Post'}></Button>
       {error && <div>{error}</div>}
     </form>
   )

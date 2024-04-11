@@ -50,6 +50,7 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
+  border: none;
 }
 
 .form-redirect {
