@@ -11,7 +11,6 @@ const app = express();
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log(req.path, req.method)
   next()
 });
 
@@ -20,7 +19,7 @@ app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
 
 // Connect to db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.NEW_MONGO_URI)
   .then(() => {
     // Server running
     app.listen(process.env.PORT, () => {

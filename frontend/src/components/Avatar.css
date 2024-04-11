@@ -1,5 +1,6 @@
 .avatar {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .avatar-logo {

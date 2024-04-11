@@ -53,16 +53,16 @@ const PostForm = ({onCloseModal}) => {
       setError(null);
       console.log('New post add', post);
       dispatch({type: 'CREATE_POST', payload: json});
-      onCloseModal={onCloseModal};
+      onCloseModal();
     }
   };
 
   return (
     <form className="modal-form" onSubmit={handleSubmit}>
-      <input
-        type="text"
+      <textarea
+        rows={20} cols={60}
         onChange={(e) => setContent(e.target.value)}
-        value={content}/>
+        value={content}></textarea>
       <Button className={'modal-create-button'} onClick={undefined} text={'Post'}></Button>
       {error && <div>{error}</div>}
     </form>

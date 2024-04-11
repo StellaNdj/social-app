@@ -1,6 +1,7 @@
 .homepage {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 30px;
 }
 
 .homepage-profile {
@@ -9,4 +10,5 @@
 
 .homepage-posts {
   flex: 3;
+  margin-left: 50px;
 }
