@@ -34,7 +34,7 @@ const createPost = async (req, res) => {
     const user_id = req.user._id;
     const user = req.user;
     const post = await Post.create({content, user: user});
-  
+
     console.log(post);
     res.status(200).json(post);
   } catch (error) {
@@ -60,9 +60,45 @@ const deletePost = async (req, res) => {
 
 }
 
+// UPDATE a post
+
+const updatePostCounters = async (req, res) => {
+  const { id } = req.params;
+  const { action } = req.body;
+
+  if(!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such post'});
+  };
+
+  let updatedPost;
+
+  if (action === 'like') {
+    updatedPost = await Post.findByIdAndUpdate(
+      {_id: id},
+      { $inc: { likes: 1 } },
+      { new: true }
+    );
+  } else if (action === 'dislike') {
+    updatedPost = await Post.findByIdAndUpdate(
+      postId,
+      { $inc: { dislikes: 1 } },
+      { new: true }
+    );
+  } else {
+    return res.status(400).json({ error: 'Invalid action' });
+  }
+
+  if (!updatedPost) {
+    return res.status(404).json({ error: 'Post not found' });
+  }
+
+  res.status(200).json(updatedPost)
+}
+
 module.exports = {
   createPost,
   getPosts,
   getPost,
-  deletePost
+  deletePost,
+  updatePostCounters
 }

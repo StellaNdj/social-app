@@ -1,5 +1,5 @@
 const express = require('express');
-const { createPost, getPost, getPosts, deletePost } = require('../controllers/postController');
+const { createPost, getPost, getPosts, deletePost, updatePostCounters } = require('../controllers/postController');
 const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
@@ -20,9 +20,7 @@ router.post('/', createPost);
 router.delete('/:id', deletePost);
 
 // UPDATE
-router.patch('/:id', (req, res) => {
-  res.json('UPDATE a post');
-})
+router.patch('/:id', updatePostCounters)
 
 
 module.exports = router;
