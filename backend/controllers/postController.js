@@ -80,7 +80,7 @@ const updatePostCounters = async (req, res) => {
     );
   } else if (action === 'dislike') {
     updatedPost = await Post.findByIdAndUpdate(
-      postId,
+      {_id: id},
       { $inc: { dislikes: 1 } },
       { new: true }
     );

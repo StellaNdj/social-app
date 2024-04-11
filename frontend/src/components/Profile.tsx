@@ -1,11 +1,11 @@
 import React from "react";
 import PostForm from "./PostForm.tsx";
+import Avatar from "./Avatar.tsx";
 
 const Profile = ({firstName, lastName, username}) => {
   return (
     <div>
-      <p>{firstName && lastName}</p>
-      <p>{username}</p>
+      <Avatar firstName={firstName} lastName={lastName} username={username}></Avatar>
       <PostForm></PostForm>
     </div>
   )
