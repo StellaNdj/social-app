@@ -11,7 +11,7 @@ This will install all the necessary packages to ensure smooth running of the app
 
 CONFIGURATION
 
-For testing purposes, a user with read-only capabilities has been created. Use the following connection string to add to your .env file on your local machine:
+For testing purposes, a temporary user has been created. Use the following connection string to add to your .env file on your local machine:
 
 NEW_MONGO_URI=mongodb+srv://testingUser:dbdkejrurrnkeu12@socialapp.jeq6gz3.mongodb.net/social_db?retryWrites=true&w=majority&appName=SocialApp
 
