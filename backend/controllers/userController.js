@@ -41,22 +41,21 @@ const signupUser = async (req, res) => {
 
 // Get user information
 const getUserInfo = async (req, res) => {
-  const { email } = req.body;
 
   try {
+    const email = req.params.email;
     const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-
     res.status(200).json({
       firstName: user.firstName,
       lastName: user.lastName,
       username: user.username,
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 

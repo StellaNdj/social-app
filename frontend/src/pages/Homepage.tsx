@@ -45,13 +45,11 @@ const Homepage = () => {
 
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch(`/api/userinfo`, {
-          method: 'POST',
+        const response = await fetch(`/api/user/${user?.email}`, {
+          method: 'GET',
           headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${user?.token}`
           },
-          body: JSON.stringify({ email: user?.email })
         });
 
         if (!response.ok) {
@@ -59,6 +57,7 @@ const Homepage = () => {
         }
 
         const json = await response.json();
+        console.log(json);
         setUserInfo(json);
       } catch (error) {
         console.error('Error fetching user info:', error);
@@ -75,7 +74,8 @@ const Homepage = () => {
   return(
     <div className='homepage'>
       <div className='homepage-profile'>
-        <Profile firstName={'Max'} lastName={'Mad'} username={'@MadMax'}></Profile>
+        {userInfo !== null && (
+        <Profile firstName={userInfo.firstName} lastName={userInfo.lastName} username={userInfo.username}></Profile>)}
       </div>
       <div className='homepage-posts'>
         {posts !== null && posts.map((post) => {
