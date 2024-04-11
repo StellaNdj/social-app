@@ -28,3 +28,5 @@ nodemon
 To start the frontend app, run the following command:
 cd frontend
 NPM start
+
+Time spent on the app : 3 days
